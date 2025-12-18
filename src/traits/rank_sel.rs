@@ -111,6 +111,14 @@ pub trait RankUnchecked {
     ///
     /// Pad the input bitslice to work around this.
     unsafe fn rank_unchecked(&self, pos: usize) -> usize;
+
+    /// Prefetches the memory needed to compute the rank of the specified position.
+    ///
+    /// Prefetching out-of-bounds is never unsafe, and neither is this method.
+    fn prefetch(&self, pos: usize) {
+        // Default implementation to not break implementations in dependents.
+        let _ = pos;
+    }
 }
 
 /// Ranking zeros over a bit vector.
