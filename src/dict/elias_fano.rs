@@ -320,7 +320,7 @@ impl<V, H, L> EliasFano<V, H, L> {
         )
     }
 
-    /// Estimate the size of an instance.
+    /// Estimate the size of an instance in bits.
     pub fn estimate_size(u: u64, n: usize) -> usize {
         if n == 0 {
             0
