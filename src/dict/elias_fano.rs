@@ -398,18 +398,13 @@ impl<V, H, L> EliasFano<V, H, L> {
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>> Types
-    for EliasFano<V, H, L>
-{
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> Types for EliasFano<V, H, L> {
     type Output<'a> = V;
     type Input = V;
 }
 
-impl<
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> IndexedSeq for EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>> IndexedSeq
+    for EliasFano<V, H, L>
 {
     #[inline]
     fn len(&self) -> usize {
@@ -436,11 +431,8 @@ impl<
     }
 }
 
-impl<
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectZeroUnchecked,
-    L: SliceByValue<Value = V>,
-> IndexedDict for EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]> + SelectZeroUnchecked, L: SliceByValue<Value = V>> IndexedDict
+    for EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -498,8 +490,7 @@ where
 
 // Iteration
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -510,8 +501,7 @@ where
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedBackIterator<Item = V>,
 {
@@ -546,11 +536,7 @@ where
     }
 }
 
-impl<
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>> EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -561,11 +547,7 @@ where
     }
 }
 
-impl<
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>> EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V> + IntoUncheckedBackIterator<Item = V>,
 {
@@ -579,12 +561,8 @@ where
     }
 }
 
-impl<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> IntoIteratorFrom for &'a EliasFano<V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>> IntoIteratorFrom
+    for &'a EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -596,12 +574,8 @@ where
     }
 }
 
-impl<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> IntoBidiIterator for &'a EliasFano<V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>> IntoBidiIterator
+    for &'a EliasFano<V, H, L>
 {
     type Item = V;
     type IntoIterBidi = EliasFanoBidiIter<'a, V, H, L>;
@@ -612,12 +586,8 @@ impl<
     }
 }
 
-impl<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> IntoBidiIteratorFrom for &'a EliasFano<V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    IntoBidiIteratorFrom for &'a EliasFano<V, H, L>
 {
     type IntoIterBidiFrom = EliasFanoBidiIter<'a, V, H, L>;
 
@@ -660,8 +630,8 @@ impl<
     }
 }
 
-impl<'a, V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    IntoBackIterator for &'a EliasFano<V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> IntoBackIterator
+    for &'a EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedBackIterator<Item = V>,
 {
@@ -674,12 +644,8 @@ where
     }
 }
 
-impl<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> IntoBackIteratorFrom for &'a EliasFano<V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    IntoBackIteratorFrom for &'a EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V> + IntoUncheckedBackIterator<Item = V>,
 {
@@ -694,12 +660,7 @@ where
     }
 }
 
-impl<
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> EliasFano<V, H, L>
-{
+impl<V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>> EliasFano<V, H, L> {
     /// Returns a bidirectional iterator positioned at the first element.
     #[inline(always)]
     pub fn iter_bidi(&self) -> EliasFanoBidiIter<'_, V, H, L> {
@@ -715,11 +676,8 @@ impl<
 
 // Succ / Pred
 
-impl<
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectZeroUnchecked,
-    L: SliceByValue<Value = V>,
-> SuccUnchecked for EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]> + SelectZeroUnchecked, L: SliceByValue<Value = V>> SuccUnchecked
+    for EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -1475,11 +1433,8 @@ where
     }
 }
 
-impl<
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectZeroUnchecked,
-    L: SliceByValue<Value = V>,
-> Pred for EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]> + SelectZeroUnchecked, L: SliceByValue<Value = V>> Pred
+    for EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedBackIterator<Item = V>,
 {
@@ -1650,11 +1605,8 @@ where
 // -----------------------------------------------------------------------------
 // Value traits
 
-impl<
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> value_traits::slices::SliceByValue for EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    value_traits::slices::SliceByValue for EliasFano<V, H, L>
 {
     type Value = V;
 
@@ -1668,12 +1620,8 @@ impl<
     }
 }
 
-impl<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> value_traits::iter::IterateByValueGat<'a> for EliasFano<V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    value_traits::iter::IterateByValueGat<'a> for EliasFano<V, H, L>
 where
     for<'c> &'c L: IntoUncheckedIterator<Item = V>,
 {
@@ -1681,11 +1629,8 @@ where
     type Iter = EliasFanoIter<'a, V, H, L>;
 }
 
-impl<
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> value_traits::iter::IterateByValue for EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    value_traits::iter::IterateByValue for EliasFano<V, H, L>
 where
     for<'c> &'c L: IntoUncheckedIterator<Item = V>,
 {
@@ -1695,12 +1640,8 @@ where
     }
 }
 
-impl<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> value_traits::iter::IterateByValueFromGat<'a> for EliasFano<V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    value_traits::iter::IterateByValueFromGat<'a> for EliasFano<V, H, L>
 where
     for<'c> &'c L: IntoUncheckedIterator<Item = V>,
 {
@@ -1708,11 +1649,8 @@ where
     type IterFrom = EliasFanoIter<'a, V, H, L>;
 }
 
-impl<
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> value_traits::iter::IterateByValueFrom for EliasFano<V, H, L>
+impl<V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    value_traits::iter::IterateByValueFrom for EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -1725,13 +1663,8 @@ where
     }
 }
 
-impl<
-    'a,
-    'b,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> value_traits::iter::IterateByValueGat<'a> for EliasFanoSubsliceImpl<'b, V, H, L>
+impl<'a, 'b, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    value_traits::iter::IterateByValueGat<'a> for EliasFanoSubsliceImpl<'b, V, H, L>
 where
     for<'c> &'c L: IntoUncheckedIterator<Item = V>,
 {
@@ -1739,12 +1672,8 @@ where
     type Iter = std::iter::Take<EliasFanoIter<'a, V, H, L>>;
 }
 
-impl<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> value_traits::iter::IterateByValue for EliasFanoSubsliceImpl<'a, V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    value_traits::iter::IterateByValue for EliasFanoSubsliceImpl<'a, V, H, L>
 where
     for<'c> &'c L: IntoUncheckedIterator<Item = V>,
 {
@@ -1756,13 +1685,8 @@ where
     }
 }
 
-impl<
-    'a,
-    'b,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> value_traits::iter::IterateByValueFromGat<'a> for EliasFanoSubsliceImpl<'b, V, H, L>
+impl<'a, 'b, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    value_traits::iter::IterateByValueFromGat<'a> for EliasFanoSubsliceImpl<'b, V, H, L>
 where
     for<'c> &'c L: IntoUncheckedIterator<Item = V>,
 {
@@ -1770,12 +1694,8 @@ where
     type IterFrom = std::iter::Take<EliasFanoIter<'a, V, H, L>>;
 }
 
-impl<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> value_traits::iter::IterateByValueFrom for EliasFanoSubsliceImpl<'a, V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    value_traits::iter::IterateByValueFrom for EliasFanoSubsliceImpl<'a, V, H, L>
 where
     for<'c> &'c L: IntoUncheckedIterator<Item = V>,
 {
@@ -1793,12 +1713,8 @@ where
 
 /// An iterator for [`EliasFano`].
 #[derive(MemSize, MemDbg)]
-pub struct EliasFanoIter<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]>,
-    L: SliceByValue<Value = V>,
-> where
+pub struct EliasFanoIter<'a, V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
+where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
     ef: &'a EliasFano<V, H, L>,
@@ -1811,8 +1727,7 @@ pub struct EliasFanoIter<
     low_bits: <&'a L as IntoUncheckedIterator>::IntoUncheckedIter,
 }
 
-impl<'a, V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    EliasFanoIter<'a, V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> EliasFanoIter<'a, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -1834,12 +1749,8 @@ where
     }
 }
 
-impl<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]> + SelectUnchecked,
-    L: SliceByValue<Value = V>,
-> EliasFanoIter<'a, V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]> + SelectUnchecked, L: SliceByValue<Value = V>>
+    EliasFanoIter<'a, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -1882,8 +1793,8 @@ where
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    UncheckedIterator for EliasFanoIter<'_, V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> UncheckedIterator
+    for EliasFanoIter<'_, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -1910,8 +1821,7 @@ where
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>> Iterator
-    for EliasFanoIter<'_, V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> Iterator for EliasFanoIter<'_, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -1956,8 +1866,8 @@ where
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    ExactSizeIterator for EliasFanoIter<'_, V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> ExactSizeIterator
+    for EliasFanoIter<'_, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -1967,15 +1877,14 @@ where
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    FusedIterator for EliasFanoIter<'_, V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> FusedIterator
+    for EliasFanoIter<'_, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
 }
 
-impl<'a, V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    EliasFanoIter<'a, V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> EliasFanoIter<'a, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V> + IntoUncheckedBackIterator<Item = V>,
 {
@@ -2019,12 +1928,8 @@ where
 /// [`leading_zeros`]: usize::leading_zeros
 /// [`trailing_zeros`]: usize::trailing_zeros
 #[derive(MemSize, MemDbg)]
-pub struct EliasFanoBackIter<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]>,
-    L: SliceByValue<Value = V>,
-> where
+pub struct EliasFanoBackIter<'a, V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
+where
     for<'b> &'b L: IntoUncheckedBackIterator<Item = V>,
 {
     ef: &'a EliasFano<V, H, L>,
@@ -2039,8 +1944,7 @@ pub struct EliasFanoBackIter<
     low_bits: <&'a L as IntoUncheckedBackIterator>::IntoUncheckedIterBack,
 }
 
-impl<'a, V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    EliasFanoBackIter<'a, V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> EliasFanoBackIter<'a, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V> + IntoUncheckedBackIterator<Item = V>,
 {
@@ -2068,8 +1972,8 @@ where
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    UncheckedIterator for EliasFanoBackIter<'_, V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> UncheckedIterator
+    for EliasFanoBackIter<'_, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedBackIterator<Item = V>,
 {
@@ -2090,7 +1994,7 @@ where
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>> Iterator
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> Iterator
     for EliasFanoBackIter<'_, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedBackIterator<Item = V>,
@@ -2136,8 +2040,8 @@ where
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    ExactSizeIterator for EliasFanoBackIter<'_, V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> ExactSizeIterator
+    for EliasFanoBackIter<'_, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedBackIterator<Item = V>,
 {
@@ -2147,15 +2051,15 @@ where
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    FusedIterator for EliasFanoBackIter<'_, V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> FusedIterator
+    for EliasFanoBackIter<'_, V, H, L>
 where
     for<'b> &'b L: IntoUncheckedBackIterator<Item = V>,
 {
 }
 
-impl<'a, V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    IntoIterator for &'a EliasFano<V, H, L>
+impl<'a, V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> IntoIterator
+    for &'a EliasFano<V, H, L>
 where
     for<'b> &'b L: IntoUncheckedIterator<Item = V>,
 {
@@ -2188,12 +2092,7 @@ where
 /// [`next`]: Iterator::next
 /// [`select_in_word`]: SelectInWord::select_in_word
 #[derive(Debug, Clone, MemSize, MemDbg)]
-pub struct EliasFanoBidiIter<
-    'a,
-    V: Word + PrimitiveNumberAs<usize>,
-    H: AsRef<[usize]>,
-    L: SliceByValue<Value = V>,
-> {
+pub struct EliasFanoBidiIter<'a, V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> {
     ef: &'a EliasFano<V, H, L>,
     /// Cursor position: `next()` yields element `index`, `prev()` yields
     /// element `index - 1`.
@@ -2207,7 +2106,7 @@ pub struct EliasFanoBidiIter<
     index_in_word: usize,
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>> Iterator
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> Iterator
     for EliasFanoBidiIter<'_, V, H, L>
 {
     type Item = V;
@@ -2273,8 +2172,8 @@ impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Valu
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    ExactSizeIterator for EliasFanoBidiIter<'_, V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> ExactSizeIterator
+    for EliasFanoBidiIter<'_, V, H, L>
 {
     #[inline(always)]
     fn len(&self) -> usize {
@@ -2282,7 +2181,23 @@ impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Valu
     }
 }
 
+<<<<<<< HEAD
 impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>> BidiIterator
+||||||| parent of 8103b6a6 (Drop PrimitiveNumberAs<usize> constraint)
+impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
+    FusedIterator for EliasFanoBidiIter<'_, V, H, L>
+{
+}
+
+impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>> BidiIterator
+=======
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> FusedIterator
+    for EliasFanoBidiIter<'_, V, H, L>
+{
+}
+
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> BidiIterator
+>>>>>>> 8103b6a6 (Drop PrimitiveNumberAs<usize> constraint)
     for EliasFanoBidiIter<'_, V, H, L>
 {
     type SwappedIter = SwappedIter<Self>;
@@ -2351,8 +2266,8 @@ impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Valu
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Value = V>>
-    ExactSizeBidiIterator for EliasFanoBidiIter<'_, V, H, L>
+impl<V: Word, H: AsRef<[usize]>, L: SliceByValue<Value = V>> ExactSizeBidiIterator
+    for EliasFanoBidiIter<'_, V, H, L>
 {
     #[inline(always)]
     fn prev_len(&self) -> usize {
@@ -2366,9 +2281,7 @@ impl<V: Word + PrimitiveNumberAs<usize>, H: AsRef<[usize]>, L: SliceByValue<Valu
 /// and find the maximum value, but then it uses
 /// [`EliasFanoBuilder::push_unchecked`], thus partially compensating for the
 /// cost of the first scan.
-impl<V: Word + PrimitiveNumberAs<usize>, A: AsRef<[V]>> From<A>
-    for EliasFano<V, BitVec<Box<[usize]>>, BitFieldVec<Box<[V]>>>
-{
+impl<V: Word, A: AsRef<[V]>> From<A> for EliasFano<V, BitVec<Box<[usize]>>, BitFieldVec<Box<[V]>>> {
     fn from(values: A) -> Self {
         let values = values.as_ref();
         let mut max = V::ZERO;
@@ -2428,7 +2341,7 @@ pub struct EliasFanoBuilder<V: Word = usize> {
     count: usize,
 }
 
-impl<V: Word + PrimitiveNumberAs<u128>> EliasFanoBuilder<V> {
+impl<V: Word> EliasFanoBuilder<V> {
     /// Creates a builder for an [`EliasFano`] containing
     /// `n` numbers smaller than or equal to `u`.
     ///
@@ -2551,7 +2464,7 @@ impl<V: Word + PrimitiveNumberAs<u128>> EliasFanoBuilder<V> {
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>> EliasFanoBuilder<V> {
+impl<V: Word> EliasFanoBuilder<V> {
     /// Builds an Elias–Fano structure with constant-time access, using
     /// default values.
     ///
@@ -2589,7 +2502,7 @@ impl<V: Word + PrimitiveNumberAs<usize>> EliasFanoBuilder<V> {
     }
 }
 
-impl<V: Word + PrimitiveNumberAs<usize>> Extend<V> for EliasFanoBuilder<V> {
+impl<V: Word> Extend<V> for EliasFanoBuilder<V> {
     fn extend<T: IntoIterator<Item = V>>(&mut self, iter: T) {
         for value in iter {
             self.push(value);
@@ -2637,7 +2550,7 @@ where
     high_bits: AtomicBitVec,
 }
 
-impl<V: Word + AtomicPrimitive + PrimitiveNumberAs<u128>> EliasFanoConcurrentBuilder<V>
+impl<V: Word + AtomicPrimitive> EliasFanoConcurrentBuilder<V>
 where
     Atomic<V>: PrimitiveAtomicUnsigned,
 {
