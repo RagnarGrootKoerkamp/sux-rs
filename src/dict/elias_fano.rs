@@ -1491,6 +1491,11 @@ where
             // pred_unchecked requires value ≤ u
             Some((self.n - 1, self.last_val))
         } else {
+            let value = if *value.borrow() <= self.last_val {
+                *value.borrow()
+            } else {
+                self.last_val
+            };
             Some(unsafe { self.pred_unchecked::<false>(value) })
         }
     }
