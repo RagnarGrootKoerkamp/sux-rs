@@ -337,6 +337,23 @@ impl<V, H, L> EliasFano<V, H, L> {
         }
     }
 
+    /// Drop the last element, without changing the underlying representation.
+    #[inline]
+    pub fn pop(&mut self) -> Option<V>
+    where
+        V: Copy,
+    {
+        if self.n == 0 {
+            return None;
+        }
+        let last = self.last_val;
+        self.n -= 1;
+        // if self.n > 0 {
+        //     self.last_val = self.get(self.n - 1);
+        // }
+        Some(last)
+    }
+
     /// Returns the number of elements in the sequence.
     ///
     /// This method is equivalent to [`IndexedSeq::len`], but it is provided to
